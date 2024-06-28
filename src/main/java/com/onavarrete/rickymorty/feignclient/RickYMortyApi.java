@@ -11,9 +11,9 @@ import com.onavarrete.rickymorty.model.dto.OriginResponseDto;
 public interface RickYMortyApi {
 	
 	    @GetMapping("/character/{id}")
-	    CharacterResponseDto getCharacterById(@PathVariable("id") Long id);
+	    CharacterResponseDto getCharacterById(@PathVariable("id") Integer id);
 	
 	    @GetMapping("/location/{id}")
-	    OriginResponseDto getOriginById(@PathVariable("id") Long id);
+	    OriginResponseDto getOriginById(@PathVariable("id") Integer id);
 	    
 }

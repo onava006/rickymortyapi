@@ -1,5 +1,5 @@
 package com.onavarrete.rickymorty.model;
 
-public interface ResponseEntity {
+public interface Entity {
 
 }
