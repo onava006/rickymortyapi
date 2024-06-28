@@ -1,9 +1,9 @@
 package com.onavarrete.rickymorty.mapper;
 
-import com.onavarrete.rickymorty.model.ResponseEntity;
+import com.onavarrete.rickymorty.model.Entity;
 
 public interface ResponseMapper {
 	
-	ResponseEntity mapResponse();
+	Entity mapResponse();
 
 }

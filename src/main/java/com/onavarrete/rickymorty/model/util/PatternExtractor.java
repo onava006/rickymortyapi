@@ -7,6 +7,10 @@ import java.util.regex.Pattern;
 public class PatternExtractor {
 
 	public static Integer getIdFromLocationUrl(String url) {
+		if(url.length() == 0) {
+			return 1;
+		}
+		
 
 		String regex = ".*/(\\d+)$";
 

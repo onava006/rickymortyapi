@@ -1,9 +1,8 @@
 package com.onavarrete.rickymorty.model.entity;
 
-import com.onavarrete.rickymorty.model.ResponseEntity;
+import com.onavarrete.rickymorty.model.Entity;
 
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +10,7 @@ import lombok.Setter;
 @Builder
 @Getter
 @Setter
-public class CharacterEntity implements ResponseEntity{
+public class CharacterEntity implements Entity{
 	
 	Integer id;
 	String name;
