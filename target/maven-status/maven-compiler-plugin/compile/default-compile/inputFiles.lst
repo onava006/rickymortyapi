@@ -1,0 +1,17 @@
+/home/onavarrete/Proyects/mobdev/rickymortyapi/src/main/java/com/onavarrete/rickymorty/model/generator/mapper/ResponseMapper.java
+/home/onavarrete/Proyects/mobdev/rickymortyapi/src/main/java/com/onavarrete/rickymorty/model/dto/CharacterResponseDto.java
+/home/onavarrete/Proyects/mobdev/rickymortyapi/src/main/java/com/onavarrete/rickymorty/model/ResponseDto.java
+/home/onavarrete/Proyects/mobdev/rickymortyapi/src/main/java/com/onavarrete/rickymorty/model/generator/mapper/OriginMapper.java
+/home/onavarrete/Proyects/mobdev/rickymortyapi/src/main/java/com/onavarrete/rickymorty/mapper/ResponseMapper.java
+/home/onavarrete/Proyects/mobdev/rickymortyapi/src/main/java/com/onavarrete/rickymorty/service/CharacterService.java
+/home/onavarrete/Proyects/mobdev/rickymortyapi/src/main/java/com/onavarrete/rickymorty/controller/CharacterController.java
+/home/onavarrete/Proyects/mobdev/rickymortyapi/src/main/java/com/onavarrete/rickymorty/model/dto/OriginResponseDto.java
+/home/onavarrete/Proyects/mobdev/rickymortyapi/src/main/java/com/onavarrete/rickymorty/config/JacksonConfig.java
+/home/onavarrete/Proyects/mobdev/rickymortyapi/src/main/java/com/onavarrete/rickymorty/model/util/PatternExtractor.java
+/home/onavarrete/Proyects/mobdev/rickymortyapi/src/main/java/com/onavarrete/rickymorty/feignclient/RickYMortyApi.java
+/home/onavarrete/Proyects/mobdev/rickymortyapi/src/main/java/com/onavarrete/rickymorty/RickymortyApplication.java
+/home/onavarrete/Proyects/mobdev/rickymortyapi/src/main/java/com/onavarrete/rickymorty/model/entity/OriginEntity.java
+/home/onavarrete/Proyects/mobdev/rickymortyapi/src/main/java/com/onavarrete/rickymorty/model/ResponseEntity.java
+/home/onavarrete/Proyects/mobdev/rickymortyapi/src/main/java/com/onavarrete/rickymorty/service/impl/CharacterServiceImpl.java
+/home/onavarrete/Proyects/mobdev/rickymortyapi/src/main/java/com/onavarrete/rickymorty/model/generator/mapper/CharacterMapper.java
+/home/onavarrete/Proyects/mobdev/rickymortyapi/src/main/java/com/onavarrete/rickymorty/model/entity/CharacterEntity.java

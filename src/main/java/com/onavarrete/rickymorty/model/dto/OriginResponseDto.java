@@ -2,10 +2,18 @@ package com.onavarrete.rickymorty.model.dto;
 
 import java.util.List;
 
+import com.onavarrete.rickymorty.model.ResponseDto;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
+@Builder
 @Data
-public class OriginResponseDto {
+@AllArgsConstructor
+public class OriginResponseDto implements ResponseDto {
+	
+	public OriginResponseDto() {};
 
 	Integer id;
 	String name;

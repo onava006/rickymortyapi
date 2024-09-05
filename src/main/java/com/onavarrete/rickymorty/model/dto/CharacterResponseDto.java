@@ -5,13 +5,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.onavarrete.rickymorty.model.ResponseDto;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 
 
+
+@Builder
 @AllArgsConstructor
-public class CharacterResponseDto {
+public class CharacterResponseDto implements ResponseDto{
 
 	public CharacterResponseDto() {};
 	
