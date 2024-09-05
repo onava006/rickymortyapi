@@ -62,11 +62,16 @@ public class CharacterProfileServiceImpl implements CharacterProfileService {
 
 
 /***
- * refactorización para delegar tarea de consumir API de rick y morty para una clase que provee de la tarea
- *  uso de métodos declarados mediante las interfaces, implementación proveída por constructor y según el contexto de la implementación
+ * refactorización para delegar tarea de consumir API de rick y morty para una clase que provee de la tarea (RickYMortyApiRequestHandler)
+ *  uso de métodos declarados mediante las interfaces (CartoonRequestHandler), implementación proveída por constructor y según el contexto de la implementación
+ *  
+ *  clase encargada de procesar patrones específicos para api de rick y morty en linea 43 pasada por parámetro del método. 
  */
 
 
+/***
+ * se reconfigura servicio solo para manejar logica de negocio de las respuestas provenientes desde las clases delegadas  
+ */
 
 
 
