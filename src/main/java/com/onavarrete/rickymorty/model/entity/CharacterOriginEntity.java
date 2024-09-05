@@ -11,14 +11,14 @@ import lombok.Data;
 @Builder
 @Data
 @AllArgsConstructor
-public class OriginEntity implements Entity {
+public class CharacterOriginEntity implements Entity {
 	
 	private String name;
 	private String url;
 	private String dimension;
 	private List<String> residents;
 
-	public OriginEntity(String url) {
+	public CharacterOriginEntity(String url) {
 		this.url = url;
 	}
 	

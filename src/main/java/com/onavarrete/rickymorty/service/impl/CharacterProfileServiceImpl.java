@@ -1,48 +1,46 @@
 package com.onavarrete.rickymorty.service.impl;
 
-import java.util.Optional;
-import java.util.function.Function;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.onavarrete.rickymorty.feignclient.RickYMortyApi;
 import com.onavarrete.rickymorty.feignclient.exception.ResourceNotFoundException;
 import com.onavarrete.rickymorty.model.Entity;
-import com.onavarrete.rickymorty.model.dto.CharacterResponseDto;
-import com.onavarrete.rickymorty.model.dto.OriginResponseDto;
 import com.onavarrete.rickymorty.service.CharacterProfileService;
+import com.onavarrete.rickymorty.service.requeshandler.CartoonRequestHandler;
 
 import com.onavarrete.rickymorty.model.entity.CharacterEntity;
 import com.onavarrete.rickymorty.model.entity.ErrorEntity;
-import com.onavarrete.rickymorty.model.entity.OriginEntity;
-import com.onavarrete.rickymorty.model.generator.mapper.CharacterMapper;
-import com.onavarrete.rickymorty.model.generator.mapper.OriginMapper;
 import com.onavarrete.rickymorty.model.util.PatternExtractor;
+import com.onavarrete.rickymorty.model.util.RickYMortyApiPatternExtractor;
+import com.onavarrete.rickymorty.model.entity.CharacterOriginEntity;
 
 @Service
 public class CharacterProfileServiceImpl implements CharacterProfileService {
 
-	RickYMortyApi api;
-	CharacterMapper charMapper;	
-	OriginMapper originMapper;
 	
-	public CharacterProfileServiceImpl(@Autowired RickYMortyApi api) {
-		this.api = api;
-		charMapper = new CharacterMapper();
-		originMapper = new OriginMapper();	
+	CartoonRequestHandler apiHandler;
+	PatternExtractor patternExtractor;
+	
+	@Autowired
+	public CharacterProfileServiceImpl(CartoonRequestHandler apiHandler) {
+		this.apiHandler = apiHandler;
+		this.patternExtractor = new RickYMortyApiPatternExtractor();
+
 	}
 
+
 	@Override
-	public ResponseEntity<Entity> getCharacterDataById(Integer id) {
+	public ResponseEntity<Entity> genCharacterProfileById(Integer id) {
 		
 		CharacterEntity character;
-		OriginEntity origin;
+		CharacterOriginEntity origin;
 		
 		try {
-			character = findCharacterById(id);
-			origin = findOriginById(character.getOrigin().getUrl());
+				
+			character = apiHandler.findCharacterById(id);
+			origin = apiHandler.findCharacterOriginById(patternExtractor, character.getOrigin().getUrl());
 		}
 		catch (ResourceNotFoundException e) {
 			ErrorEntity errorEntity = new ErrorEntity(e.getMessage(), "Utilizar otro id");
@@ -59,32 +57,14 @@ public class CharacterProfileServiceImpl implements CharacterProfileService {
 		return new ResponseEntity<>(character, HttpStatus.OK);
 		
 	}
-
-	private CharacterEntity findCharacterById(Integer id) throws ResourceNotFoundException{
-
-		Function<Integer, CharacterResponseDto> obtainCharacter = i -> Optional.of(api.getCharacterById(i)).orElseThrow(() -> new ResourceNotFoundException("Resource not found with id " + i));
-		Function<CharacterResponseDto, CharacterEntity> mapCharacter = d -> charMapper.mapResponse(d);
-		Function<Integer, CharacterEntity> requestCharacter = obtainCharacter.andThen(mapCharacter);
-
-		return requestCharacter.apply(id);
-	}
-	
-
-	private OriginEntity findOriginById(String id) {
-		
-		Integer requestId = PatternExtractor.getIdFromLocationUrl(id);		
-		
-		Function<Integer, OriginResponseDto> getOriginDto = (i) -> api.getOriginById(i);
-		Function<OriginResponseDto, OriginEntity> getOrigin = (o) -> originMapper.mapResponse(o);
-		Function<Integer, OriginEntity> requestOrigin = getOriginDto.andThen(getOrigin);
-
-		OriginEntity origin = requestOrigin.apply(requestId);
-		return origin;
-
-	}
 }
 
 
+
+/***
+ * refactorización para delegar tarea de consumir API de rick y morty para una clase que provee de la tarea
+ *  uso de métodos declarados mediante las interfaces, implementación proveída por constructor y según el contexto de la implementación
+ */
 
 
 

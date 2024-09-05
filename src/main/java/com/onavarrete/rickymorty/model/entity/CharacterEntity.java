@@ -18,9 +18,9 @@ public class CharacterEntity implements Entity{
 	String species;
 	String type;
 	Integer episodeCount;
-	OriginEntity origin;
+	CharacterOriginEntity origin;
 	
-	public void setOrigin(OriginEntity o) {
+	public void setOrigin(CharacterOriginEntity o) {
 		origin.setDimension(o.getDimension());
 		origin.setName(o.getName());
 		origin.setResidents(o.getResidents());
