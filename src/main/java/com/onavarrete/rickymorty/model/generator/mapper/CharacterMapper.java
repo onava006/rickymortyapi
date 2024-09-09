@@ -1,26 +1,27 @@
 package com.onavarrete.rickymorty.model.generator.mapper;
 
-import com.onavarrete.rickymorty.model.dto.CharacterResponseDto;
-import com.onavarrete.rickymorty.model.entity.CharacterEntity;
-import com.onavarrete.rickymorty.model.entity.CharacterOriginEntity;
+import com.onavarrete.rickymorty.model.dto.CharacterOriginDto;
+import com.onavarrete.rickymorty.model.dto.CharacterProfileDto;
 
-public class CharacterMapper extends ResponseMapper<CharacterResponseDto, CharacterEntity>{
+import com.onavarrete.rickymorty.model.entity.CharacterResponseEntity;
+
+public class CharacterMapper extends ResponseMapper<CharacterResponseEntity, CharacterProfileDto>{
 
 	public CharacterMapper() {}
 	
 	@Override
-	public CharacterEntity mapResponse(CharacterResponseDto dto) {
-		
-		Long episodeCount = dto.getEpisode().stream().count();
-		
-		CharacterEntity entity = CharacterEntity.builder()
-												.id(dto.getId())
-												.name(dto.getName())
-												.status(dto.getStatus())
-												.species(dto.getSpecies())
-												.type(dto.getType())
+	public CharacterProfileDto mapResponse(CharacterResponseEntity characterResponse) {
+
+		Long episodeCount = characterResponse.getEpisode().stream().count();
+
+		CharacterProfileDto entity = CharacterProfileDto.builder()
+												.id(characterResponse.getId())
+												.name(characterResponse.getName())
+												.status(characterResponse.getStatus())
+												.species(characterResponse.getSpecies())
+												.type(characterResponse.getType())
 												.episodeCount(Integer.valueOf(episodeCount.intValue()))
-												.origin(new CharacterOriginEntity(dto.getOrigin().get("url")))
+												.origin(new CharacterOriginDto(characterResponse.getOrigin().get("url")))
 												.build();
 		
 		return entity;

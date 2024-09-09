@@ -1,11 +1,9 @@
 package com.onavarrete.rickymorty.service;
 
-import org.springframework.http.ResponseEntity;
-
-import com.onavarrete.rickymorty.model.Entity;
+import com.onavarrete.rickymorty.model.dto.CharacterProfileDto;
 
 public interface CharacterProfileService {
 
-	Entity genCharacterProfileById(Integer id);
+	CharacterProfileDto genCharacterProfileById(Integer id);
 }
 

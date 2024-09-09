@@ -1,23 +1,22 @@
-package com.onavarrete.rickymorty.model.dto;
+package com.onavarrete.rickymorty.model.entity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.onavarrete.rickymorty.model.ResponseDto;
-
+import com.onavarrete.rickymorty.model.EntityResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-
+import org.springframework.http.HttpStatus;
 
 
 @Builder
 @AllArgsConstructor
-public class CharacterResponseDto implements ResponseDto{
+public class CharacterResponseEntity implements EntityResponse {
 
-	public CharacterResponseDto() {};
-	
+	public CharacterResponseEntity(){}
+
 	private Integer id;
 	private String name;
 	private String status;
@@ -30,6 +29,16 @@ public class CharacterResponseDto implements ResponseDto{
 	private List<String> episode;
 	private String url;
 	private String created;
+
+	private HttpStatus responseStatus;
+
+	public HttpStatus getApiResponseStatus(){
+		return this.responseStatus;
+	}
+	public void setApiResponseStatus(HttpStatus httpResponseStatus) {
+		this.responseStatus = httpResponseStatus;
+	}
+
 	public Integer getId() {
 		return id;
 	}

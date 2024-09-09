@@ -1,45 +1,40 @@
 package com.onavarrete.rickymorty.service.impl;
 
+import com.onavarrete.rickymorty.model.dto.CharacterOriginDto;
+import com.onavarrete.rickymorty.model.dto.CharacterProfileDto;
+import com.onavarrete.rickymorty.model.entity.CharacterOriginResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.onavarrete.rickymorty.feignclient.exception.ResourceNotFoundException;
-import com.onavarrete.rickymorty.model.Entity;
 import com.onavarrete.rickymorty.service.CharacterProfileService;
-import com.onavarrete.rickymorty.requeshandler.requeshandler.ApiRequestHandler;
+import com.onavarrete.rickymorty.requeshandler.requeshandler.RickYMortyRequestHandler;
 
-import com.onavarrete.rickymorty.model.entity.CharacterEntity;
-import com.onavarrete.rickymorty.model.entity.ErrorEntity;
 import com.onavarrete.rickymorty.model.util.PatternExtractor;
 import com.onavarrete.rickymorty.model.util.RickYMortyApiPatternExtractor;
-import com.onavarrete.rickymorty.model.entity.CharacterOriginEntity;
 
 @Service
 public class CharacterProfileServiceImpl implements CharacterProfileService {
 
-	ApiRequestHandler apiHandler;
+	RickYMortyRequestHandler apiHandler;
 	PatternExtractor patternExtractor;
 	
 	@Autowired
-	public CharacterProfileServiceImpl(ApiRequestHandler apiHandler) {
+	public CharacterProfileServiceImpl(RickYMortyRequestHandler apiHandler) {
 		this.apiHandler = apiHandler;
 		this.patternExtractor = new RickYMortyApiPatternExtractor();
 	}
 
 	@Override
-	public CharacterEntity genCharacterProfileById(Integer id) {
+	public CharacterProfileDto genCharacterProfileById(Integer id) {
 
-		CharacterEntity character;
-		CharacterOriginEntity origin;
-		character = apiHandler.findCharacterById(id);
+		CharacterProfileDto characterProfile;
+		CharacterOriginDto characterOrigin;
 
-		if(character != null){
-			origin = apiHandler.findCharacterOriginById(patternExtractor, character.getOrigin().getUrl());
-			character.setOrigin(origin);
-		}
-		return character;
+		characterProfile = apiHandler.findCharacterById(id);
+		characterOrigin = apiHandler.findCharacterOriginById(this.patternExtractor, characterProfile.getOrigin().getUrl());
+		characterProfile.setOrigin(characterOrigin);
+
+		return characterProfile;
 	}
 }
 
