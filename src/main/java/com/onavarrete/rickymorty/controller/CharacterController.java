@@ -1,6 +1,8 @@
 package com.onavarrete.rickymorty.controller;
 
 
+import com.onavarrete.rickymorty.model.entity.ErrorEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,17 +17,20 @@ import com.onavarrete.rickymorty.service.CharacterProfileService;
 public class CharacterController {
 
 	CharacterProfileService service;
-	
-	
 	public CharacterController(CharacterProfileService service) {
 		this.service = service;
 	}
 
 	@GetMapping("/{characterId}")
-	ResponseEntity<Entity> getChracter(@PathVariable Integer characterId) {
+	ResponseEntity<Entity> getCharacter(@PathVariable Integer characterId) {
 
-	
-		return service.genCharacterProfileById(characterId);
+	Entity characterProfile = service.genCharacterProfileById(characterId);
+
+		if (characterProfile != null) {
+			return new ResponseEntity<>(characterProfile, HttpStatus.OK);
+		} else {
+			return  new ResponseEntity<>(new ErrorEntity("Not found", "No se ha encontrado el personaje"), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 }

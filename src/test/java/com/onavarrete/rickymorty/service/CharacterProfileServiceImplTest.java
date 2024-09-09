@@ -2,38 +2,30 @@ package com.onavarrete.rickymorty.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static org.mockito.Mockito.when;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 
-import com.onavarrete.rickymorty.feignclient.RickYMortyApi;
-import com.onavarrete.rickymorty.model.Entity;
 import com.onavarrete.rickymorty.model.dto.CharacterResponseDto;
 import com.onavarrete.rickymorty.model.dto.OriginResponseDto;
 import com.onavarrete.rickymorty.model.entity.CharacterEntity;
 import com.onavarrete.rickymorty.model.entity.CharacterOriginEntity;
 import com.onavarrete.rickymorty.service.impl.CharacterProfileServiceImpl;
-import com.onavarrete.rickymorty.service.requeshandler.CartoonRequestHandler;
+import com.onavarrete.rickymorty.requeshandler.requeshandler.ApiRequestHandler;
 
 @ExtendWith(MockitoExtension.class)
 public class CharacterProfileServiceImplTest {
 	
 	
 	@Mock
-    private CartoonRequestHandler api;
+    private ApiRequestHandler api;
 
     @InjectMocks
     private CharacterProfileServiceImpl service;

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.onavarrete.rickymorty.feignclient.exception.ResourceNotFoundException;
 import com.onavarrete.rickymorty.model.Entity;
 import com.onavarrete.rickymorty.service.CharacterProfileService;
-import com.onavarrete.rickymorty.service.requeshandler.CartoonRequestHandler;
+import com.onavarrete.rickymorty.requeshandler.requeshandler.ApiRequestHandler;
 
 import com.onavarrete.rickymorty.model.entity.CharacterEntity;
 import com.onavarrete.rickymorty.model.entity.ErrorEntity;
@@ -19,47 +19,29 @@ import com.onavarrete.rickymorty.model.entity.CharacterOriginEntity;
 @Service
 public class CharacterProfileServiceImpl implements CharacterProfileService {
 
-	
-	CartoonRequestHandler apiHandler;
+	ApiRequestHandler apiHandler;
 	PatternExtractor patternExtractor;
 	
 	@Autowired
-	public CharacterProfileServiceImpl(CartoonRequestHandler apiHandler) {
+	public CharacterProfileServiceImpl(ApiRequestHandler apiHandler) {
 		this.apiHandler = apiHandler;
 		this.patternExtractor = new RickYMortyApiPatternExtractor();
-
 	}
-
 
 	@Override
-	public ResponseEntity<Entity> genCharacterProfileById(Integer id) {
-		
+	public CharacterEntity genCharacterProfileById(Integer id) {
+
 		CharacterEntity character;
 		CharacterOriginEntity origin;
-		
-		try {
-				
-			character = apiHandler.findCharacterById(id);
+		character = apiHandler.findCharacterById(id);
+
+		if(character != null){
 			origin = apiHandler.findCharacterOriginById(patternExtractor, character.getOrigin().getUrl());
+			character.setOrigin(origin);
 		}
-		catch (ResourceNotFoundException e) {
-			ErrorEntity errorEntity = new ErrorEntity(e.getMessage(), "Utilizar otro id");
-			return new ResponseEntity<>(errorEntity, HttpStatus.NOT_FOUND);
-		}		
-		
-		catch (Exception e) {
-			System.out.print(e.getMessage());
-			System.out.print(e.getCause());
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		
-		character.setOrigin(origin);		
-		return new ResponseEntity<>(character, HttpStatus.OK);
-		
+		return character;
 	}
 }
-
-
 
 /***
  * refactorización para delegar tarea de consumir API de rick y morty para una clase que provee de la tarea (RickYMortyApiRequestHandler)

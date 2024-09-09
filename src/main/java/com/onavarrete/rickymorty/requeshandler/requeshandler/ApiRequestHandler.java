@@ -1,13 +1,14 @@
-package com.onavarrete.rickymorty.service.requeshandler;
+package com.onavarrete.rickymorty.requeshandler.requeshandler;
 
 import com.onavarrete.rickymorty.feignclient.exception.ResourceNotFoundException;
+import com.onavarrete.rickymorty.model.Entity;
 import com.onavarrete.rickymorty.model.entity.CharacterEntity;
 import com.onavarrete.rickymorty.model.entity.CharacterOriginEntity;
 import com.onavarrete.rickymorty.model.util.PatternExtractor;
 
-public interface CartoonRequestHandler {
+public interface ApiRequestHandler {
 
-	public CharacterEntity findCharacterById(Integer id) throws ResourceNotFoundException;	
+	public CharacterEntity findCharacterById(Integer id) throws ResourceNotFoundException;
 	
 	public CharacterOriginEntity findCharacterOriginById(PatternExtractor patternExtractor, String id);
 }
