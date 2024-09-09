@@ -1,8 +1,10 @@
-package com.onavarrete.rickymorty.service.requeshandler;
+package com.onavarrete.rickymorty.requeshandler.requeshandler;
 
 import java.util.Optional;
 import java.util.function.Function;
 
+import com.onavarrete.rickymorty.model.Entity;
+import com.onavarrete.rickymorty.model.entity.ErrorEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,46 +20,59 @@ import com.onavarrete.rickymorty.model.util.PatternExtractor;
 
 
 @Component
-public class RickYMortyApiRequestHandler implements CartoonRequestHandler {
+public class RickYMortyApiRequestHandler implements ApiRequestHandler {
 
 	RickYMortyApi api;
 	CharacterMapper charMapper;	
 	OriginMapper originMapper;
 
-	
-	@Autowired 
 	public RickYMortyApiRequestHandler(RickYMortyApi api) {
 		this.api = api;
 		this.charMapper = new CharacterMapper();
 		this.originMapper = new OriginMapper();	
 	}
 	
-	
 	@Override
 	public CharacterEntity findCharacterById(Integer id) throws ResourceNotFoundException{
+
+		CharacterEntity characterEntity;
 
 		Function<Integer, CharacterResponseDto> obtainCharacter = i -> Optional.of(api.getCharacterById(i)).orElseThrow(() -> new ResourceNotFoundException("Resource not found with id " + i));
 		Function<CharacterResponseDto, CharacterEntity> mapCharacter = d -> charMapper.mapResponse(d);
 		Function<Integer, CharacterEntity> requestCharacter = obtainCharacter.andThen(mapCharacter);
 
-		return requestCharacter.apply(id);
+		try{
+			characterEntity = requestCharacter.apply(id);
+		}
+		catch (ResourceNotFoundException e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+		return characterEntity;
 	}
 	
 	@Override
 	public CharacterOriginEntity findCharacterOriginById(PatternExtractor patternExtractor, String id) {
 		
-		Integer requestId = patternExtractor.getLocationIdFromUrl(id);		
-		
+		Integer requestId = patternExtractor.getLocationIdFromUrl(id);
+		CharacterOriginEntity characterOrigin;
+
 		Function<Integer, OriginResponseDto> getOriginDto = (i) -> api.getOriginById(i);
 		Function<OriginResponseDto, CharacterOriginEntity> getOrigin = (o) -> originMapper.mapResponse(o);
 		Function<Integer, CharacterOriginEntity> requestOrigin = getOriginDto.andThen(getOrigin);
 
-		CharacterOriginEntity origin = requestOrigin.apply(requestId);
-		return origin;
-
+		try{
+			characterOrigin = requestOrigin.apply(requestId);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+		return characterOrigin;
 	}
-	
-	
 }
 
 /***

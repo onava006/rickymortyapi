@@ -19,7 +19,7 @@ public class CharacterEntity implements Entity{
 	String type;
 	Integer episodeCount;
 	CharacterOriginEntity origin;
-	
+
 	public void setOrigin(CharacterOriginEntity o) {
 		origin.setDimension(o.getDimension());
 		origin.setName(o.getName());
