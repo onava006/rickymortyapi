@@ -1,17 +1,17 @@
 package com.onavarrete.rickymorty.model.generator.mapper;
 
-import com.onavarrete.rickymorty.model.dto.OriginResponseDto;
-import com.onavarrete.rickymorty.model.entity.CharacterOriginEntity;
+import com.onavarrete.rickymorty.model.dto.CharacterOriginDto;
+import com.onavarrete.rickymorty.model.entity.CharacterOriginResponseEntity;
 
-public class OriginMapper extends ResponseMapper<OriginResponseDto, CharacterOriginEntity>{
+public class OriginMapper extends ResponseMapper<CharacterOriginResponseEntity, CharacterOriginDto>{
 
 	@Override
-	public CharacterOriginEntity mapResponse(OriginResponseDto dto) {
+	public CharacterOriginDto mapResponse(CharacterOriginResponseEntity originResponse) {
 		
-		return CharacterOriginEntity.builder().name(dto.getName())
-				.url(dto.getUrl())
-				.dimension(dto.getDimension())
-				.residents(dto.getResidents())
+		return CharacterOriginDto.builder().name(originResponse.getName())
+				.url(originResponse.getUrl())
+				.dimension(originResponse.getDimension())
+				.residents(originResponse.getResidents())
 				.build();
 	}
 

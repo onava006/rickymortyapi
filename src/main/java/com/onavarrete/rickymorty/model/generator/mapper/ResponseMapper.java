@@ -1,9 +1,11 @@
 package com.onavarrete.rickymorty.model.generator.mapper;
 
-import com.onavarrete.rickymorty.model.Entity;
-import com.onavarrete.rickymorty.model.ResponseDto;
+import com.onavarrete.rickymorty.model.DtoResponse;
+import com.onavarrete.rickymorty.model.EntityResponse;
 
-public abstract class ResponseMapper<T extends ResponseDto, R extends Entity> {
+
+
+public abstract class ResponseMapper<T extends EntityResponse, R extends DtoResponse> {
 	
 	  public abstract R mapResponse(T dto);
 

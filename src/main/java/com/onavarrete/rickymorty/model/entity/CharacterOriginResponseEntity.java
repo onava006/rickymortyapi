@@ -1,9 +1,8 @@
-package com.onavarrete.rickymorty.model.dto;
+package com.onavarrete.rickymorty.model.entity;
 
 import java.util.List;
 
-import com.onavarrete.rickymorty.model.ResponseDto;
-
+import com.onavarrete.rickymorty.model.EntityResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,9 +10,9 @@ import lombok.Data;
 @Builder
 @Data
 @AllArgsConstructor
-public class OriginResponseDto implements ResponseDto {
+public class CharacterOriginResponseEntity implements EntityResponse {
 	
-	public OriginResponseDto() {};
+	public CharacterOriginResponseEntity() {};
 
 	Integer id;
 	String name;
