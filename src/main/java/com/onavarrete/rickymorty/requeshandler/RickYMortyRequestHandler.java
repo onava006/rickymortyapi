@@ -1,4 +1,4 @@
-package com.onavarrete.rickymorty.requeshandler.requeshandler;
+package com.onavarrete.rickymorty.requeshandler;
 
 import com.onavarrete.rickymorty.feignclient.exception.ResourceNotFoundException;
 import com.onavarrete.rickymorty.model.dto.CharacterProfileDto;

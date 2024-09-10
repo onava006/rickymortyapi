@@ -2,12 +2,11 @@ package com.onavarrete.rickymorty.service.impl;
 
 import com.onavarrete.rickymorty.model.dto.CharacterOriginDto;
 import com.onavarrete.rickymorty.model.dto.CharacterProfileDto;
-import com.onavarrete.rickymorty.model.entity.CharacterOriginResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.onavarrete.rickymorty.service.CharacterProfileService;
-import com.onavarrete.rickymorty.requeshandler.requeshandler.RickYMortyRequestHandler;
+import com.onavarrete.rickymorty.requeshandler.RickYMortyRequestHandler;
 
 import com.onavarrete.rickymorty.model.util.PatternExtractor;
 import com.onavarrete.rickymorty.model.util.RickYMortyApiPatternExtractor;

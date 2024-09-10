@@ -1,4 +1,4 @@
-package com.onavarrete.rickymorty.requeshandler.requeshandler;
+package com.onavarrete.rickymorty.requeshandler;
 
 import java.util.Optional;
 import java.util.function.Function;
