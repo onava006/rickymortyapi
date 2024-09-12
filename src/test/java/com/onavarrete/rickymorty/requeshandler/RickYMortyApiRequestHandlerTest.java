@@ -29,7 +29,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class RickYMortyApiRequestHandlerTest {
 
-    @Mock  private RickYMortyApi  rickYMortyApiMock;
+    @Mock private RickYMortyApi rickYMortyApiMock;
     @InjectMocks private RickYMortyApiRequestHandler rickYMortyApiRequestHandler;
 
     CharacterResponseEntity characterResponse_Correct_Response;
@@ -37,7 +37,6 @@ class RickYMortyApiRequestHandlerTest {
     @DisplayName("Prueba para validar que se recibe usuario con perfil")
     @BeforeEach
     void setUp() {
-        rickYMortyApiRequestHandler = new RickYMortyApiRequestHandler(rickYMortyApiMock);
         characterResponse_Correct_Response = CharacterResponseEntityMocks.getCharacterResponseCorrectResponse();
     }
 
@@ -55,6 +54,7 @@ class RickYMortyApiRequestHandlerTest {
     }
 
     @DisplayName("Prueba para validar que cuando feign client envía un character, este es manejado y entregado como Dto")
+    @Test
     public void should_Return_CharacterDto_When_Feign_Client_Succeeds() {
         // Arrange
         Integer  mockUserId = 1;
@@ -69,10 +69,9 @@ class RickYMortyApiRequestHandlerTest {
 
     @DisplayName("Prueba para validar que cuando feign client arroja una FeignExeption esta es capturada y Handler hace un throw ResourceNotFoundException")
     @Test
-    void should_Handle_Feign_Client_Exception() {
+    void should_Handle_Feign_Client_Exceptionshould_Handle_Feign_Client_Exception() {
         // Arrange
         Integer wrong_user_id = -12;
-        characterResponse_Correct_Response.setId(wrong_user_id);
         Request mockRequest = CharacterResponseEntityMocks.getMockRequestToHandleException();
         // Act
         Mockito.when(rickYMortyApiMock.getCharacterById(wrong_user_id)).thenThrow(new FeignException.NotFound("User not found", mockRequest, null, null));
@@ -83,16 +82,6 @@ class RickYMortyApiRequestHandlerTest {
 
     }
 
-
-
-
-    {
-        // Arrange
-
-        // Act
-
-        // Assert
-    }
 
 
 }

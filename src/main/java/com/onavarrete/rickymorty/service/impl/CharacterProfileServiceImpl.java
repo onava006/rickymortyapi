@@ -15,12 +15,10 @@ import com.onavarrete.rickymorty.model.util.RickYMortyApiPatternExtractor;
 public class CharacterProfileServiceImpl implements CharacterProfileService {
 
 	RickYMortyRequestHandler apiHandler;
-	PatternExtractor patternExtractor;
+
 	
-	@Autowired
 	public CharacterProfileServiceImpl(RickYMortyRequestHandler apiHandler) {
 		this.apiHandler = apiHandler;
-		this.patternExtractor = new RickYMortyApiPatternExtractor();
 	}
 
 	@Override
@@ -30,7 +28,7 @@ public class CharacterProfileServiceImpl implements CharacterProfileService {
 		CharacterOriginDto characterOrigin;
 
 		characterProfile = apiHandler.findCharacterById(id);
-		characterOrigin = apiHandler.findCharacterOriginById(this.patternExtractor, characterProfile.getOrigin().getUrl());
+		characterOrigin = apiHandler.findCharacterOriginById(characterProfile.getOrigin().getUrl());
 		characterProfile.setOrigin(characterOrigin);
 
 		return characterProfile;

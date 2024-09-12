@@ -4,7 +4,9 @@ import com.onavarrete.rickymorty.model.dto.CharacterOriginDto;
 import com.onavarrete.rickymorty.model.dto.CharacterProfileDto;
 
 import com.onavarrete.rickymorty.model.entity.CharacterResponseEntity;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CharacterMapper extends ResponseMapper<CharacterResponseEntity, CharacterProfileDto>{
 
 	public CharacterMapper() {}

@@ -1,9 +1,13 @@
 package com.onavarrete.rickymorty.model.util;
 
+import org.springframework.stereotype.Component;
+
 import java.util.NoSuchElementException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
+@Component
 public class RickYMortyApiPatternExtractor implements PatternExtractor{
 
 	

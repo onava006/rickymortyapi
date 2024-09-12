@@ -20,7 +20,10 @@ public class CharacterOriginDto implements DtoResponse {
 	public CharacterOriginDto(String url) {
 		this.url = url;
 	}
-	
-	
+
+
+    public CharacterOriginDto() {
+
+    }
 }
 

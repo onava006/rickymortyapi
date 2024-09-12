@@ -9,9 +9,10 @@ public interface RickYMortyRequestHandler {
 
 	public CharacterProfileDto findCharacterById(Integer id) throws ResourceNotFoundException;
 	
-	public CharacterOriginDto findCharacterOriginById(PatternExtractor patternExtractor, String id);
+	public CharacterOriginDto findCharacterOriginById(String id);
+
 }
 
 /***
-* re denominación de interfaces y métodos para proveer sentido más específico y hacer que sean entendibles de forma más expedita 
+* re denominación de interfaces y métodos para proveer sentido más específico y hacer que sean entendibles de forma más expedita
 ***/ 

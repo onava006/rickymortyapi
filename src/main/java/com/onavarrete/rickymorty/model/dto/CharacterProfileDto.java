@@ -21,6 +21,8 @@ public class CharacterProfileDto implements DtoResponse, Serializable {
     Integer episodeCount;
     CharacterOriginDto origin;
 
+
+
     public void setOrigin(CharacterOriginDto characterOrigin) {
         origin.setDimension(characterOrigin.getDimension());
         origin.setName(characterOrigin.getName());
